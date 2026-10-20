@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment and OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Build & Archives
+*.zip
+*.crx
+dist/
+build/
+
+# Antigravity & IDE
+.vscode/
+.idea/
+.gemini/

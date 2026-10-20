@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forgotten Clipboard - History & Settings</title>
+  <link rel="stylesheet" href="../styles/shared.css">
+  <link rel="stylesheet" href="history.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Left Navigation Sidebar -->
+    <aside class="sidebar" aria-label="Sidebar Navigation">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <img src="../assets/icons/icon-48.png" alt="Forgotten Clipboard" class="brand-logo">
+          <div class="brand-titles">
+            <h1 class="brand-name">Forgotten Clipboard</h1>
+            <span class="brand-tag">Copy it once. Find it anytime.</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">Views</div>
+        <button class="nav-item active" data-tab="history">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span>All Snippets</span>
+          <span class="nav-badge" id="sideCountAll">0</span>
+        </button>
+        <button class="nav-item" data-tab="history" data-filter="favorites">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          <span>Starred Favorites</span>
+          <span class="nav-badge" id="sideCountFav">0</span>
+        </button>
+
+        <div class="nav-section-title">Categories</div>
+        <button class="nav-item category-item" data-filter="link">
+          <span class="category-dot dot-link"></span>
+          <span>Links & URLs</span>
+          <span class="nav-badge" id="sideCountLink">0</span>
+        </button>
+        <button class="nav-item category-item" data-filter="code">
+          <span class="category-dot dot-code"></span>
+          <span>Code & Commands</span>
+          <span class="nav-badge" id="sideCountCode">0</span>
+        </button>
+        <button class="nav-item category-item" data-filter="email">
+          <span class="category-dot dot-email"></span>
+          <span>Emails</span>
+          <span class="nav-badge" id="sideCountEmail">0</span>
+        </button>
+        <button class="nav-item category-item" data-filter="text">
+          <span class="category-dot dot-text"></span>
+          <span>Plain Text</span>
+          <span class="nav-badge" id="sideCountText">0</span>
+        </button>
+
+        <div class="nav-section-title">Configuration</div>
+        <button class="nav-item" data-tab="settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Settings & Backup</span>
+        </button>
+        <button class="nav-item" data-tab="privacy">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>Privacy & Security</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="theme-switch-row">
+          <span class="theme-label">Theme</span>
+          <div class="theme-toggle-group">
+            <button class="btn-theme-opt" data-theme-val="light" title="Light theme">☀️</button>
+            <button class="btn-theme-opt" data-theme-val="dark" title="Dark theme">🌙</button>
+            <button class="btn-theme-opt active" data-theme-val="system" title="System match">💻</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <header class="top-bar">
+        <div class="top-search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="mainSearchInput" placeholder="Search full history (words, URLs, code, tags)..." autocomplete="off" spellcheck="false">
+          <button id="clearMainSearchBtn" class="btn-icon hidden" title="Clear">✕</button>
+          <span class="kbd-hint">/</span>
+        </div>
+
+        <div class="top-actions">
+          <select id="sortSelect" class="select-sort" aria-label="Sort snippets">
+            <option value="newest">Sort: Newest First</option>
+            <option value="oldest">Sort: Oldest First</option>
+            <option value="length">Sort: Longest Text</option>
+          </select>
+          <button id="mainCaptureBtn" class="btn btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              <line x1="12" y1="11" x2="12" y2="17"></line>
+            </svg>
+            <span>Capture Clipboard</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- View: History List -->
+      <section id="viewHistory" class="view-panel active">
+        <!-- Stats Summary Strip -->
+        <div class="stats-strip">
+          <div class="stat-pill"><span class="stat-num" id="statTotal">0</span> Total Snippets</div>
+          <div class="stat-pill"><span class="stat-num" id="statStarred">0</span> Starred</div>
+          <div class="stat-pill"><span class="stat-num" id="statLinks">0</span> Links</div>
+          <div class="stat-pill"><span class="stat-num" id="statCodes">0</span> Code Blocks</div>
+          <div class="stat-pill"><span class="stat-num" id="statEmails">0</span> Emails</div>
+        </div>
+
+        <!-- History Grid / List -->
+        <div class="history-content-scroll">
+          <div id="historyGrid" class="history-grid" role="list">
+            <!-- Populated via history.js -->
+          </div>
+
+          <!-- Empty State -->
+          <div id="fullEmptyState" class="empty-state hidden">
+            <div class="empty-icon-wrap">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              </svg>
+            </div>
+            <h2 class="empty-title">No snippets to display</h2>
+            <p class="empty-desc" id="fullEmptyDesc">Your clipboard history is currently empty or no items match your search filter.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- View: Settings & Backup -->
+      <section id="viewSettings" class="view-panel">
+        <div class="settings-container">
+          <h2 class="section-heading">Settings & Preferences</h2>
+
+          <!-- History Limit Card -->
+          <div class="settings-card">
+            <div class="card-title-row">
+              <div class="card-icon-title">
+                <h3 class="card-title">History Storage Limit</h3>
+                <p class="card-subtitle">Maximum number of snippets to store before automatically pruning the oldest non-starred items.</p>
+              </div>
+            </div>
+            <div class="settings-control-row">
+              <input type="range" id="limitRange" min="50" max="2000" step="50" value="500" class="range-slider">
+              <div class="limit-display">
+                <input type="number" id="limitNumber" min="10" max="5000" value="500" class="input-number">
+                <span>items</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Default Filter Card -->
+          <div class="settings-card">
+            <div class="card-title-row">
+              <div>
+                <h3 class="card-title">Default Startup View</h3>
+                <p class="card-subtitle">Choose the default view displayed when you open Forgotten Clipboard.</p>
+              </div>
+            </div>
+            <div class="settings-control-row">
+              <select id="defaultFilterSelect" class="select-dropdown">
+                <option value="all">All Snippets</option>
+                <option value="favorites">Favorites Only</option>
+                <option value="link">Links</option>
+                <option value="code">Code</option>
+                <option value="email">Emails</option>
+                <option value="text">Plain Text</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Backup & Data Portability Card -->
+          <div class="settings-card">
+            <div class="card-title-row">
+              <div>
+                <h3 class="card-title">Backup & Export / Import</h3>
+                <p class="card-subtitle">Export your history to a secure JSON file, or restore data from a previous backup. No server involved.</p>
+              </div>
+            </div>
+            <div class="backup-actions-grid">
+              <div class="backup-box">
+                <h4>Export History Backup</h4>
+                <p>Download all saved snippets, favorites, tags, and settings as a standard JSON file.</p>
+                <button id="exportJsonBtn" class="btn btn-secondary">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Export JSON Backup</span>
+                </button>
+              </div>
+
+              <div class="backup-box">
+                <h4>Import Backup File</h4>
+                <p>Restore snippets from a JSON backup. You can choose to merge with existing items or replace.</p>
+                <div class="import-controls">
+                  <select id="importModeSelect" class="select-dropdown-sm">
+                    <option value="merge">Merge with existing data</option>
+                    <option value="replace">Replace all existing data</option>
+                  </select>
+                  <label class="btn btn-secondary file-upload-label">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <span>Choose JSON File</span>
+                    <input type="file" id="importFileInput" accept=".json,application/json" class="file-input-hidden">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Danger Zone Card -->
+          <div class="settings-card danger-card">
+            <div class="card-title-row">
+              <div>
+                <h3 class="card-title text-danger">Danger Zone</h3>
+                <p class="card-subtitle">Erase clipboard history. Starred items can optionally be retained.</p>
+              </div>
+            </div>
+            <div class="danger-actions">
+              <button id="openClearHistoryModalBtn" class="btn btn-danger">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                <span>Clear All Clipboard History...</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- View: Privacy & Security -->
+      <section id="viewPrivacy" class="view-panel">
+        <div class="settings-container">
+          <h2 class="section-heading">Privacy & Security Notice</h2>
+          <div class="settings-card">
+            <h3 class="card-title">100% Local & Private</h3>
+            <p class="privacy-para">Forgotten Clipboard was built from the ground up with a strict privacy-first architecture:</p>
+            <ul class="privacy-list">
+              <li><strong>Zero Cloud Sync:</strong> All clipboard records reside entirely in your browser's private <code>chrome.storage.local</code> sandbox.</li>
+              <li><strong>Zero Telemetry:</strong> No analytics, tracking beacons, ads, or external network requests of any kind are included.</li>
+              <li><strong>User-Initiated Capture:</strong> In compliance with Chrome Manifest V3 security rules, clipboard reading occurs strictly upon explicit user interaction (clicking "Capture Clipboard", pasting text, or right-clicking to save selection). The extension never performs background clipboard snooping.</li>
+              <li><strong>Safe Text Rendering:</strong> Saved snippets are rendered safely using strict DOM text nodes (<code>textContent</code>) to prevent script injection and XSS vulnerabilities.</li>
+              <li><strong>Sensitive Data Warning:</strong> Clipboards can occasionally contain sensitive information like passwords, API keys, or private notes. You can delete individual items or clear your entire history at any time.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Detail Inspection Modal -->
+    <div id="detailModal" class="modal-backdrop hidden">
+      <div class="modal-dialog modal-large">
+        <div class="modal-header">
+          <div class="modal-header-meta">
+            <span id="detailTypeBadge" class="badge-type">Text</span>
+            <span id="detailTimestamp" class="modal-timestamp"></span>
+          </div>
+          <button id="closeDetailModalBtn" class="btn-icon">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="detail-text-box">
+            <pre id="detailFullText" class="detail-pre"></pre>
+          </div>
+          <div class="detail-tags-section">
+            <label class="detail-label">Tags:</label>
+            <div id="detailTagsList" class="tag-chips-list"></div>
+            <div class="tag-input-row" style="margin-top: 6px;">
+              <input type="text" id="detailNewTagInput" placeholder="Add tag..." maxlength="24">
+              <button id="detailAddTagBtn" class="btn btn-secondary btn-sm">Add Tag</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="detailStarBtn" class="btn btn-secondary">
+            <span id="detailStarIcon">☆</span> Star Favorite
+          </button>
+          <button id="detailDeleteBtn" class="btn btn-danger">Delete</button>
+          <button id="detailCopyBtn" class="btn btn-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="detailCopyLabel">Copy to Clipboard</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirm Clear History Modal -->
+    <div id="historyClearModal" class="modal-backdrop hidden">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3 class="modal-title">Clear Entire History?</h3>
+          <button id="closeHistoryClearModalBtn" class="btn-icon">✕</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-text">Are you sure you want to permanently clear your clipboard history? This operation cannot be reversed.</p>
+          <label class="modal-checkbox-label">
+            <input type="checkbox" id="historyKeepFavoritesCheckbox" checked>
+            <span>Keep my starred favorite snippets</span>
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button id="cancelHistoryClearBtn" class="btn btn-secondary">Cancel</button>
+          <button id="confirmHistoryClearBtn" class="btn btn-danger">Erase History</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Global Toast Container -->
+    <div id="historyToastContainer" class="toast-container" aria-live="polite"></div>
+  </div>
+
+  <script src="../scripts/classifier.js"></script>
+  <script src="../scripts/utils.js"></script>
+  <script src="../scripts/search.js"></script>
+  <script src="../scripts/clipboard.js"></script>
+  <script src="../scripts/storage.js"></script>
+  <script src="history.js"></script>
+</body>
+</html>

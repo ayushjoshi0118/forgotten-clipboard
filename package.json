@@ -1,0 +1,19 @@
+{
+  "name": "forgotten-clipboard",
+  "version": "1.0.0",
+  "description": "Privacy-first clipboard history manager Chrome Extension (Manifest V3)",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "generate-icons": "node generate-icons.js"
+  },
+  "keywords": [
+    "chrome-extension",
+    "manifest-v3",
+    "clipboard",
+    "clipboard-manager",
+    "productivity",
+    "privacy-first"
+  ],
+  "author": "Ayush",
+  "license": "MIT"
+}

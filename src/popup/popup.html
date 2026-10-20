@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forgotten Clipboard</title>
+  <link rel="stylesheet" href="../styles/shared.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <img src="../assets/icons/icon-32.png" alt="Forgotten Clipboard" class="brand-icon">
+        <div class="brand-text">
+          <h1 class="brand-title">Forgotten Clipboard</h1>
+          <span class="brand-tagline">Copy it once. Find it anytime.</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggleBtn" class="btn-icon" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg class="icon-theme" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+        <button id="openHistoryBtn" class="btn-icon" title="Open Full History & Settings" aria-label="Open Full History & Settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <polyline points="9 21 3 21 3 15"></polyline>
+            <line x1="21" y1="3" x2="14" y2="10"></line>
+            <line x1="3" y1="21" x2="10" y2="14"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Capture Action Bar -->
+    <div class="capture-bar">
+      <button id="captureClipboardBtn" class="btn btn-primary btn-capture" title="Read clipboard and save">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+          <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          <line x1="12" y1="11" x2="12" y2="17"></line>
+          <line x1="9" y1="14" x2="15" y2="14"></line>
+        </svg>
+        <span>Capture Clipboard</span>
+      </button>
+      <button id="togglePastePanelBtn" class="btn btn-secondary" title="Paste text manually">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+        </svg>
+        <span>Manual Paste</span>
+      </button>
+    </div>
+
+    <!-- Manual Paste Drawer (collapsible) -->
+    <div id="manualPasteDrawer" class="paste-drawer hidden">
+      <textarea id="manualPasteInput" placeholder="Paste or type text to save here..." rows="3"></textarea>
+      <div class="drawer-actions">
+        <button id="cancelPasteBtn" class="btn btn-ghost btn-sm">Cancel</button>
+        <button id="saveManualPasteBtn" class="btn btn-primary btn-sm">Save to History</button>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-wrapper">
+      <div class="search-input-box">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search snippets, URLs, code, tags..." autocomplete="off" spellcheck="false">
+        <button id="clearSearchBtn" class="btn-icon clear-btn hidden" title="Clear search">✕</button>
+        <span class="search-shortcut" title="Press / to focus">/</span>
+      </div>
+    </div>
+
+    <!-- Filter Chips -->
+    <nav class="filter-chips" aria-label="Snippet category filters">
+      <button class="filter-chip active" data-filter="all">All <span class="filter-count" id="countAll">0</span></button>
+      <button class="filter-chip" data-filter="favorites">★ Starred <span class="filter-count" id="countFav">0</span></button>
+      <button class="filter-chip" data-filter="link">Links <span class="filter-count" id="countLink">0</span></button>
+      <button class="filter-chip" data-filter="code">Code <span class="filter-count" id="countCode">0</span></button>
+      <button class="filter-chip" data-filter="email">Emails <span class="filter-count" id="countEmail">0</span></button>
+      <button class="filter-chip" data-filter="text">Text <span class="filter-count" id="countText">0</span></button>
+    </nav>
+
+    <!-- History Snippets List -->
+    <main class="snippets-container" id="snippetsContainer" tabindex="-1">
+      <div id="snippetsList" class="snippets-list" role="list">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="empty-state hidden">
+        <div class="empty-icon-wrap">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          </svg>
+        </div>
+        <h2 class="empty-title">No snippets found</h2>
+        <p class="empty-desc" id="emptyDesc">Click <strong>Capture Clipboard</strong> or select text on any page and right-click <em>Save to Forgotten Clipboard</em>.</p>
+      </div>
+    </main>
+
+    <!-- Footer Status -->
+    <footer class="app-footer">
+      <span id="statusInfo" class="status-info">0 saved items</span>
+      <div class="footer-links">
+        <button id="quickClearBtn" class="btn-ghost btn-sm-danger" title="Clear all history">Clear</button>
+      </div>
+    </footer>
+
+    <!-- Tag Editor Modal -->
+    <div id="tagModal" class="modal-backdrop hidden">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3 class="modal-title">Manage Tags</h3>
+          <button id="closeTagModalBtn" class="btn-icon">✕</button>
+        </div>
+        <div class="modal-body">
+          <div id="currentTagsContainer" class="tag-chips-list"></div>
+          <div class="tag-input-row">
+            <input type="text" id="newTagInput" placeholder="Add tag (e.g. work, dev, ideas)..." maxlength="24">
+            <button id="addTagBtn" class="btn btn-secondary">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirm Clear Modal -->
+    <div id="clearModal" class="modal-backdrop hidden">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3 class="modal-title">Clear Clipboard History?</h3>
+          <button id="closeClearModalBtn" class="btn-icon">✕</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-text">Are you sure you want to clear your clipboard history? This action cannot be undone.</p>
+          <label class="modal-checkbox-label">
+            <input type="checkbox" id="keepFavoritesCheckbox" checked>
+            <span>Keep my starred favorite snippets</span>
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button id="cancelClearBtn" class="btn btn-secondary">Cancel</button>
+          <button id="confirmClearBtn" class="btn btn-danger">Clear History</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Feedback Container -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+  </div>
+
+  <script src="../scripts/classifier.js"></script>
+  <script src="../scripts/utils.js"></script>
+  <script src="../scripts/search.js"></script>
+  <script src="../scripts/clipboard.js"></script>
+  <script src="../scripts/storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

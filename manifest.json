@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Forgotten Clipboard",
+  "version": "1.0.0",
+  "description": "Privacy-first clipboard history manager. Copy it once. Find it anytime.",
+  "icons": {
+    "16": "src/assets/icons/icon-16.png",
+    "32": "src/assets/icons/icon-32.png",
+    "48": "src/assets/icons/icon-48.png",
+    "128": "src/assets/icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Forgotten Clipboard",
+    "default_icon": {
+      "16": "src/assets/icons/icon-16.png",
+      "32": "src/assets/icons/icon-32.png",
+      "48": "src/assets/icons/icon-48.png",
+      "128": "src/assets/icons/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
+  "options_ui": {
+    "page": "src/history/history.html",
+    "open_in_tab": true
+  },
+  "permissions": [
+    "storage",
+    "clipboardRead",
+    "clipboardWrite",
+    "contextMenus"
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+V",
+        "mac": "Command+Shift+V"
+      },
+      "description": "Open Forgotten Clipboard popup"
+    },
+    "open-history-page": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+H",
+        "mac": "Command+Shift+H"
+      },
+      "description": "Open full history manager"
+    }
+  }
+}
