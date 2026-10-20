@@ -37,26 +37,6 @@ The default operating system clipboard has a critical limitation: **it only hold
 - 🌗 **Light & Dark Theme Support:** Thoughtfully crafted design system with smooth transitions, adhering to system preferences or manual toggles.
 - ⌨️ **Keyboard Productivity:** Built for keyboard power users (`/` to focus search, arrow keys to navigate, `Enter` to copy, `Esc` to dismiss).
 
----
-
-## 🖼️ Screenshots
-
-> _Placeholder: Replace with actual screenshots when submitting to Chrome Web Store or publishing on portfolio._
-
-```
-+-------------------------------------------------------+
-|  [Popup Interface]                                    |
-|  [Screenshot Placeholder: popup-search-dark.png]      |
-|  Shows: Search input, filter chips, snippet cards     |
-+-------------------------------------------------------+
-|  [Full History & Settings]                            |
-|  [Screenshot Placeholder: history-dashboard.png]      |
-|  Shows: Multi-column view, sidebar filters, backup    |
-+-------------------------------------------------------+
-```
-
----
-
 ## 🏗️ Architecture Overview
 
 The extension is structured into modular, decoupled JavaScript components without unnecessary build steps:
